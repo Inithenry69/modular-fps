@@ -4,6 +4,7 @@
 
 export type WeaponType = {
 	name : string;
+	model : Model;
 	firetype : string; -- auto / semi
 	firerate : number;	
 }
