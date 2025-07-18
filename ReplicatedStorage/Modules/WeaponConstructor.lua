@@ -25,7 +25,11 @@ function Weapon.New(WeaponProperties : WeaponType)
 end
 
 -- equip
-function Weapon:Equip()
+function Weapon:Setup()
+	
+	local WeaponModel = self.WeaponProperties.model
+	
+	for 	
 	
 end
 
