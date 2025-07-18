@@ -9,19 +9,30 @@ export type WeaponType = {
 	firerate : number;	
 }
 
+local ViewmodelModule = require(script.Viewmodel)
+
 
 local Weapon = {}
 Weapon.__index = Weapon
 
+
 function Weapon.New(WeaponProperties : WeaponType)
 	local self = setmetatable({}, Weapon)
-	
+		
 	self.WeaponProperties = WeaponProperties
 	
 	return self	
 end
 
+-- equip
+function Weapon:Equip()
+	
+end
+
 -- update
+function Weapon:Update()
+		
+end
 
 	-- viewmodel
 
