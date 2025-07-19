@@ -66,10 +66,10 @@ end
 -- dequip
 
 -- update
-function Weapon:Update()
+function Weapon:Update(dt)
 	
 	-- viewmodel
-	self.Viewmodel:Update()
+	self.Viewmodel:Update(dt)
 
 	-- fire	
 	
