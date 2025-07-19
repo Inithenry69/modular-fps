@@ -1,14 +1,6 @@
 -- @ScriptType: ModuleScript
 
 
-
-export type WeaponType = {
-	name : string;
-	model : Model;
-	firetype : string; -- auto / semi
-	firerate : number;	
-}
-
 local ViewmodelModule = require(script.Viewmodel)
 
 
@@ -16,10 +8,11 @@ local Weapon = {}
 Weapon.__index = Weapon
 
 
-function Weapon.New(WeaponProperties : WeaponType)
-	local self = setmetatable({}, Weapon)
-		
-	self.WeaponProperties = WeaponProperties
+function Weapon.New(WeaponName, Model)
+	local self = setmetatable({}, Weapon)	
+	
+	self.Name = WeaponName
+	self.Model = Model
 	
 	return self	
 end
@@ -27,20 +20,48 @@ end
 -- equip
 function Weapon:Setup()
 	
-	local WeaponModel = self.WeaponProperties.model
+	local MainPart = self.Model.Components.Handle
 	
-	for 	
+	for i, part in ipairs(self.Model:GetDescendants()) do
+		
+		if part:IsA("BasePart") and part ~= MainPart then
+			
+			if part.Parent.Name == "Animatable" then
+				
+				local NewMotor = Instance.new("Motor6D")
+				NewMotor.Name = part.Name
+				NewMotor.Part0 = MainPart
+				NewMotor.Part1 = part
+				NewMotor.C0 = NewMotor.Part0.CFrame:Inverse() * NewMotor.Part1.CFrame
+				NewMotor.Parent = MainPart
+				
+			else
+				
+				local NewWeld = Instance.new("Weld")
+				NewWeld.Name = part.Name
+				NewWeld.Part0 = MainPart
+				NewWeld.Part1 = part
+				NewWeld.C0 = NewWeld.Part0.CFrame:Inverse() * NewWeld.Part1.CFrame
+				NewWeld.Parent = MainPart				
+			
+			end
+			
+		end
+		
+	end
 	
 end
 
 -- update
 function Weapon:Update()
-		
-end
-
+	
 	-- viewmodel
 
-	-- fire
+	-- fire	
+	
+end
+
+	
 
 -- reload
 
