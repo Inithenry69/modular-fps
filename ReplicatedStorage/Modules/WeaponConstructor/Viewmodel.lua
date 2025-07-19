@@ -20,9 +20,21 @@ function Viewmodel.New(WeaponModel)
 	
 end
 
+function Viewmodel:Equip()
+	
+	ViewmodelModel.Parent = Camera
+	
+	local WeaponHandle = self.WeaponModel.Components.Handle
+	local HRPMotor = ViewmodelModel:WaitForChild("HumanoidRootPart").Handle
+	
+	HRPMotor.Part1 = WeaponHandle
+	
+	self.WeaponModel.Parent = ViewmodelModel
+end
+
 function Viewmodel:Update()
 	
-	
+	ViewmodelModel.PrimaryPart.CFrame = Camera.CFrame
 	
 end
 
