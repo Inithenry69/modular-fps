@@ -13,6 +13,7 @@ function Weapon.New(WeaponName, Model)
 	
 	self.Name = WeaponName
 	self.Model = Model
+	self.Viewmodel = ViewmodelModule.New(self.Model)
 	
 	return self	
 end
@@ -26,6 +27,9 @@ function Weapon:Setup()
 		
 		if part:IsA("BasePart") and part ~= MainPart then
 			
+			-- part settings
+			part.CanCollide = false
+				
 			if part.Parent.Name == "Animatable" then
 				
 				local NewMotor = Instance.new("Motor6D")
@@ -52,10 +56,20 @@ function Weapon:Setup()
 	
 end
 
+-- equip
+function Weapon:Equip()
+	
+	self.Viewmodel:Equip()
+	
+end
+
+-- dequip
+
 -- update
 function Weapon:Update()
 	
 	-- viewmodel
+	self.Viewmodel:Update()
 
 	-- fire	
 	
