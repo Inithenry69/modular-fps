@@ -1,16 +1,8 @@
 -- @ScriptType: ModuleScript
 --[[
 	Henry Baber 2025
-	State Machine System
+	State Machine 
 ]]--
-
---[[
-	TODO
-	
-	- Make States Universal
-	- Make entire state based movement system
-]]--
-
 
 
 export type State = {
