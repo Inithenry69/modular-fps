@@ -24,7 +24,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
 			
 			Honeybadger:Fire(true)
 			
-			wait(0.1)
+			task.wait(0.1)
 			
 		until shooting == false
 		
