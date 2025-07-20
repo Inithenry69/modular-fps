@@ -8,6 +8,13 @@ local Camera = workspace.CurrentCamera
 local Weapon = {}
 Weapon.__index = Weapon
 
+local function EmitParticles(object)
+	for _, Particles in pairs(object:GetDescendants()) do
+		if Particles:IsA("ParticleEmitter") then
+			Particles:Emit(1)
+		end
+	end
+end
 
 function Weapon.New(WeaponName, Model)
 	local self = setmetatable({}, Weapon)	
@@ -78,24 +85,27 @@ function Weapon:Fire(isStart)
 	
 	self.Viewmodel:Recoil(isStart)
 	
-	-- VFX
-	
-	-- SFX
-	
-	-- Actually shoot bullets
-	local Params = RaycastParams.new()
-	Params.FilterType = Enum.RaycastFilterType.Exclude
-	Params.FilterDescendantsInstances = {
-		self.Model,
-		game.Players.LocalPlayer.Character
-	}
-
-	local hit = workspace:Raycast(Camera.CFrame.Position, Camera.CFrame.LookVector * 100, Params)
-
-	if hit then
-
+	if isStart then
+		-- SFX
 		
+		-- VFX
+		EmitParticles(self.Model.Components.FirePart)		
+		
+		-- Actually shoot bullets
+		local Params = RaycastParams.new()
+		Params.FilterType = Enum.RaycastFilterType.Exclude
+		Params.FilterDescendantsInstances = {
+			self.Model,
+			game.Players.LocalPlayer.Character
+		}
 
+		local hit = workspace:Raycast(Camera.CFrame.Position, Camera.CFrame.LookVector * 100, Params)
+
+		if hit then
+
+
+
+		end
 	end
 	
 end
