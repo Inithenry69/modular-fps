@@ -67,7 +67,7 @@ function Viewmodel:Update(dt)
 	ViewmodelModel.PrimaryPart.CFrame *= CFrame.new(0, 0, UpdatedKickSpring.Z)	
 	
 	-- update camera	
-	Camera.CFrame *= CFrame.Angles(math.rad(UpdatedRecoilSpring.X), math.rad(UpdatedRecoilSpring.Z), 0)
+	Camera.CFrame = Camera.CFrame * CFrame.Angles(math.rad(UpdatedRecoilSpring.X), math.rad(UpdatedRecoilSpring.Y), 0)
 end
 
 function Viewmodel:Recoil(isSpray)
@@ -85,7 +85,7 @@ function Viewmodel:Recoil(isSpray)
 		end
 		
 		self.RecoilSpring:shove(
-			Vector3.new(RECOILS[self.shots][1], 0, RECOILS[self.shots][2])
+			Vector3.new(RECOILS[self.shots][1], RECOILS[self.shots][2], 0)
 		)
 		
 		self.KickSpring:shove(
