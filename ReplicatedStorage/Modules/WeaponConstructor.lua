@@ -103,7 +103,7 @@ function Weapon:Fire(isStart)
 
 		if hit then
 
-
+			
 
 		end
 	end
